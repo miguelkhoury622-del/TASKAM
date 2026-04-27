@@ -2,37 +2,114 @@
 
 :root {
   --primary: #1B3A6B;
-  --primary-light: #2a5298;
-  --primary-dark: #122848;
   --accent: #F97316;
-  --accent-light: #fb923c;
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --surface: #ffffff;
-  --muted: #64748b;
-  --border: #e2e8f0;
+  --accent-glow: rgba(249, 115, 22, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-hover: rgba(255, 255, 255, 0.1);
+  --bg-dark: #070d1a;
+  --bg-gradient: linear-gradient(135deg, #070d1a 0%, #0f1829 40%, #0d1535 70%, #130d2e 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-accent: var(--accent);
-}
-
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-dark);
+  color: #f1f5f9;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Glass utility */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.1);
+}
+
+/* Glow effects */
+.glow-orange {
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.3), 0 0 60px rgba(249, 115, 22, 0.1);
+}
+
+.glow-blue {
+  box-shadow: 0 0 30px rgba(27, 58, 107, 0.4), 0 0 60px rgba(27, 58, 107, 0.2);
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(249, 115, 22, 0.5);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #F97316 0%, #fb923c 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Orb backgrounds */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Floating hero background animations */
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-18px) rotate(2deg); }
+  66%       { transform: translateY(-8px) rotate(-1deg); }
+}
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  40%       { transform: translateY(-22px) rotate(-2deg); }
+  70%       { transform: translateY(-10px) rotate(1.5deg); }
+}
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-14px) rotate(3deg); }
+}
+@keyframes float-4 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  45%       { transform: translateY(-20px) rotate(-1.5deg); }
+  80%       { transform: translateY(-6px) rotate(2deg); }
+}
+@keyframes float-5 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  30%       { transform: translateY(-12px) rotate(1deg); }
+  60%       { transform: translateY(-24px) rotate(-2deg); }
+}
+
+.animate-float-1 { animation: float-1 6s ease-in-out infinite; }
+.animate-float-2 { animation: float-2 8s ease-in-out infinite; }
+.animate-float-3 { animation: float-3 7s ease-in-out infinite; }
+.animate-float-4 { animation: float-4 9s ease-in-out infinite; }
+.animate-float-5 { animation: float-5 5.5s ease-in-out infinite; }
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar-track { background: #0a0f1e; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+/* Input styles for dark theme */
+input, select, textarea {
+  color-scheme: dark;
+}

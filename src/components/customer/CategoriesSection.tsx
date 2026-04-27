@@ -11,37 +11,37 @@ export default function CategoriesSection() {
     getCategories().then(setCategories).catch(console.error);
   }, []);
 
-  const bgColors = [
-    "#EFF6FF", "#F0FDF4", "#FFFBEB", "#FFF7ED", "#FDF4FF",
-    "#FEF2F2", "#F0FDFA", "#F0FDF4", "#EFF6FF", "#FFF7ED",
-  ];
-
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-black text-slate-900">What do you need help with?</h2>
-          <p className="text-slate-500 mt-2">Browse our most popular service categories</p>
+    <section className="py-24 relative overflow-hidden" style={{ background: "var(--bg-gradient)" }}>
+      <div className="orb w-96 h-96 top-0 right-0 opacity-10" style={{ background: "radial-gradient(circle, #F97316, transparent)" }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <span className="text-sm font-bold uppercase tracking-widest gradient-text">Browse</span>
+          <h2 className="text-4xl font-black text-white mt-2">What do you need help with?</h2>
+          <p className="mt-3 text-base" style={{ color: "rgba(255,255,255,0.5)" }}>
+            Choose from our most popular service categories
+          </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {categories.map((cat, i) => (
-            <Link
-              key={cat.id}
-              href={`/services?category=${cat.name.toLowerCase()}`}
-              className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-slate-100 hover:border-[#1B3A6B] hover:shadow-md transition-all cursor-pointer"
-              style={{ backgroundColor: bgColors[i % bgColors.length] }}
-            >
-              <span className="text-4xl group-hover:scale-110 transition-transform">
+          {categories.map((cat) => (
+            <Link key={cat.id} href={`/services?category=${cat.name.toLowerCase()}`}
+              className="group glass-card rounded-2xl p-5 flex flex-col items-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105"
+              style={{ textDecoration: "none" }}>
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl transition-transform group-hover:scale-110"
+                style={{ background: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.2)" }}>
                 {cat.emoji || "🔧"}
-              </span>
-              <span className="text-sm font-semibold text-slate-700 text-center">{cat.name}</span>
+              </div>
+              <span className="text-sm font-semibold text-white text-center">{cat.name}</span>
             </Link>
           ))}
         </div>
 
-        <div className="text-center mt-8">
-          <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold hover:opacity-80 transition-opacity" style={{ color: "#1B3A6B" }}>
+        <div className="text-center mt-10">
+          <Link href="/services"
+            className="inline-flex items-center gap-2 text-sm font-semibold transition-all hover:opacity-80"
+            style={{ color: "#F97316" }}>
             View all services →
           </Link>
         </div>
